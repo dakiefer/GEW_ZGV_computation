@@ -1,0 +1,29 @@
+# Visit https://bit.ly/cffinit to generate CFF your file!
+
+cff-version: 1.2.0
+title: GEW ZGV computation
+message: 'If this software is useful to you, please cite it.'
+type: software
+authors:
+  - given-names: Bor
+    family-names: Plestenjak
+    email: bor.plestenjak@fmf.uni-lj.si
+    affiliation: 'Faculty of Mathematics and Physics, University of Ljubljana, Slovenia'
+    orcid: 'https://orcid.org/0000-0002-0463-7223'
+  - given-names: Daniel A.
+    family-names: Kiefer
+    email: daniel.kiefer@espci.fr
+    affiliation: 'Institut Langevin, ESPCI Paris'
+    orcid: 'https://orcid.org/0000-0003-0776-8429'
+#doi: 
+#version: 1.0
+#date-released: 2023-08-19
+#url: 'https://github.com/dakiefer/GEW_ZGV_computation'
+#repository-code: 'https://github.com/dakiefer/GEW_ZGV_computation'
+keywords:
+  - zero-group-velocity (ZGV)
+  - resonances
+  - guided waves
+  - dispersion
+  - Lamb waves
+  - anisotropy
