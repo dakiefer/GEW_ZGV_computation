@@ -1,14 +1,14 @@
-# GEW ZGV computation
+# GEW ZGV computation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.TODO.svg)](https://doi.org/10.5281/zenodo.TODO)
 
 **Compute zero-group-velocity (ZGV) points of guided elastic waves (GEWs).** 
 
-Three different computational techniques to locate ZGV points are implemented. They are all based on the discretized guided wave problem.
+Three different computational techniques to locate ZGV points on dispersion curves are implemented. They are all based on the discretized waveguide problem.
 
 - **Newton-type iteration:** super fast but needs initial guesses.
 - **Method of fixed relative distance (MFRD):** scans a wavenumber interval without initial guesses and is likely to locate all ZGV points but is substantially slower. It refines computed approximations with the Newton-type iteration.
 - **Direct method:** does not need initial guesses and guarantees to find all ZGV points. It is slow and can, therefore, only be used with rather small matrices.
 
-![dispersion_fig](https://user-images.githubusercontent.com/3725269/185589376-c991b579-2550-40e8-8d7b-d90de9edec77.png)
+<img src="https://user-images.githubusercontent.com/3725269/210227577-cfc9a367-2dd5-4c1c-95b0-f1c1a3cbfdce.png"  alt="ZGV points on dispersion curves" width="400px" />
 
 Code repository: [<img src="https://www.svgrepo.com/show/35001/github.svg" alt="GitHub" width="27px" />](https://github.com/dakiefer/gew_zgv_computation) [https://github.com/dakiefer/gew_zgv_computation](https://github.com/dakiefer/gew_zgv_computation)
 
@@ -38,10 +38,10 @@ Daniel A. Kiefer, Institut Langevin, ESPCI Paris | PSL, France<br/>
 
 If this code is useful to you, please cite it as:
 
-> TODO
+> B. Plestenjak and D. A. Kiefer, GEW ZGV computation [Computer software], 2023. doi: [10.5281/zenodo.TODO](http://doi.org/10.5281/zenodo.TODO)
 
 and also the related publication:
 
 > D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing zero-group-velocity points in anisotropic elastic waveguides: globally and locally convergent methods." arXiv, Nov. 2022. doi: [10.48550/arXiv.2211.01995](http://doi.org/10.48550/arXiv.2211.01995)
 
-[<img src="https://user-images.githubusercontent.com/3725269/185571121-f5fcd518-32de-40b2-b4b1-f4ef0610ccd1.svg" alt="Logo Institut Langevin" width="250px" />](https://www.institut-langevin.espci.fr) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<img src="https://user-images.githubusercontent.com/3725269/185570398-ca2796ab-2bd3-4171-a7a6-af1f74014504.svg" alt="Logo ESPCI Paris" width="260px" />](https://www.espci.psl.eu/en/)
+[<img src="https://user-images.githubusercontent.com/3725269/210226492-a2a56855-f1ea-4e36-96bf-0c66e28e6d7b.svg" alt="Logo FMF" width="210px" />](https://www.fmf.uni-lj.si/en/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<img src="https://user-images.githubusercontent.com/3725269/210226450-69833a58-8e9e-4dca-8401-2ab5119cc1da.svg" alt="Logo Institut Langevin" width="230px" />](https://www.institut-langevin.espci.fr) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<img src="https://user-images.githubusercontent.com/3725269/210226449-caa43ed7-0385-4546-a9ad-5d3c99339b8c.svg" alt="Logo ESPCI Paris" width="210px" />](https://www.espci.psl.eu/en/)
