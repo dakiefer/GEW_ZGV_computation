@@ -10,7 +10,11 @@
 % convergent methods." arXiv, Nov. 2022. doi: 10.48550/arXiv.2211.01995.
 
 % % load matrices and parameters
-load("matrices.mat") % matrices (L2, L1, L0, M), dispersion (dat), thickness (h), norm. param (np)
+% L2, L1, L0, M: finite element matrices
+% dat          : dispersion data for visualization
+% h            : plate thickness
+% np           : normalization of matrices 
+load("matrices.mat") 
 fmax = 25e6;         % maximum frequency of interest
 
 % % here are some ZGV points with 2 digits accuracy (serve as initial guess for Newton's method): 
