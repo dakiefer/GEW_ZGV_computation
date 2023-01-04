@@ -73,7 +73,7 @@ for i = 1:length(lambdaCand)
     L = lambdaCand(i)^2*L2 + lambdaCand(i)*L1 + L0;
     [X,muCand,Y] = eig(-L,M, 'vector'); % return square-frequencies muCand as vector
     for j = 1:length(muCand)
-        iWd = 1i*2*lambdaCand(i)*L2 + 1i*L1; % note that 1i*Wd is Hermitean
+        iWd = 1i*2*lambdaCand(i)*L2 + 1i*L1; % note that 1i*Wd is Hermitian
         if ~isinf(muCand(j)) && abs(Y(:,j)'*iWd*X(:,j))/(norm(Y(:,j))*norm(X(:,j)))<membtol
            lambda = [lambda; lambdaCand(i)];
            mu = [mu; muCand(j)];
