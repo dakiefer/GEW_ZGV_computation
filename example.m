@@ -17,6 +17,12 @@ fmax = 25e6;         % maximum frequency of interest
 w0 = [0.29    0.52    0.69    0.72    0.75]*1e8; % circular frequencies
 k0 = [0.34    0.35    0.71    0.25    0.07]*1e4; % wavenumbers
 
+% % plot dispersion curves for reference: 
+fig = figure; clf, hold on, ylim([0, fmax/1e6]), xlim([0, fmax/1e6])
+plot(dat.k*h, dat.w*h/2/pi/1e3);
+xlabel('wavenumber-thickness kh in rad'), ylabel('frequency-thickness fh in MHz mm')
+drawnow;
+
 %% Newton-type iteration: 
 % This method is super fast but requires initial guesses:
 fprintf('\n\n++ Newton-type iteration: ++\nSearch close to initial guesses:\n')
@@ -34,17 +40,14 @@ toc
 zgv.k = kzgv/np.h0; zgv.w = wzgv*np.fh0/np.h0; % save as structure in physical units
 
 % print initial guesses and computed values 
-disp('initial frequencies:')
-disp(w0)
-disp('converged frequencies:')
-disp(zgv.w.')
+disp('initial frequencies:'), disp(w0)
+disp('converged frequencies:'), disp(zgv.w.')
 
 % % plot
-figure(1), clf, hold on, ylim([0, 25]); xlim([0, 25])
-plot(dat.k*h, dat.w*h/2/pi/1e3);
-plot(zgv.k(:)*h, zgv.w(:)*h/2/pi/1e3, 'r*');
-xlabel('wavenumber-thickness kh in rad'), ylabel('frequency-thickness fh in MHz*mm')
-title('Newton method: first five ZGV points'), drawnow;
+figure(fig);
+hNewton = plot(zgv.k(:)*h, zgv.w(:)*h/2/pi/1e3, 'rx');
+hNewton.DisplayName = 'Newton method';
+hle = legend(hNewton); hle.Location='southeast'; drawnow;
 
 %% Scanning the ZGV points
 % This method does not need initial guesses and is likely to locate all ZGV
@@ -69,11 +72,10 @@ disp('number of computed ZGV points:') % print number of located ZGV points
 disp(length(zgv.w(zgv.w < 2*pi*fmax))) 
 
 % % plot
-figure(2), clf, hold on, ylim([0, 25]); xlim([0, 25])
-plot(dat.k*h, dat.w*h/2/pi/1e3); 
-plot(zgv.k*h, zgv.w*h/2/pi/1e3, 'r*');
-xlabel('wavenumber-thickness kh in rad'), ylabel('frequency-thickness fh in MHz*mm')
-title('Scanning method'), drawnow;
+figure(fig);
+hScan = plot(zgv.k(:)*h, zgv.w(:)*h/2/pi/1e3, 'ko');
+hScan.DisplayName = 'Scanning method';
+drawnow;
 
 %% Direct method
 % This method does not need initial guesses and guarantees to find all ZGV
@@ -92,8 +94,7 @@ disp(length(zgv.w(zgv.w < 2*pi*fmax)))
 
 
 % % plot
-figure(3), clf, hold on, ylim([0, 25]); xlim([0, 25])
-plot(dat.k*h, dat.w*h/2/pi/1e3);
-plot(zgv.k*h, zgv.w*h/2/pi/1e3, 'r*');
-xlabel('wavenumber-thickness kh in rad'), ylabel('frequency-thickness fh in MHz*mm')
-title('Direct method'), drawnow;
+figure(fig);
+hDirect = plot(zgv.k(:)*h, zgv.w(:)*h/2/pi/1e3, 'k.');
+hDirect.DisplayName = 'Direct method';
+drawnow;
