@@ -32,24 +32,24 @@ drawnow;
 fprintf('\n\n++ Newton-type iteration: ++\nSearch close to initial guesses:\n')
 
 % initialize:
-kzgv = nan(length(k0),1);
-wzgv = nan(length(w0),1); 
+kzgvN = nan(length(k0),1);
+wzgvN = nan(length(w0),1); 
 tic
 for i=1:numel(w0) % for every initial guess (w0, k0)
     w0i = w0(i)*np.h0/np.fh0; k0i = k0(i)*np.h0; % normalize according to matrices
     [ki,wi] = ZGVNewtonBeta(L2, L1, L0, M, k0i, w0i);  % compute
-    kzgv(i) = ki; wzgv(i) = wi; % store
+    kzgvN(i) = ki; wzgvN(i) = wi; % store
 end
 toc
-zgv.k = kzgv/np.h0; zgv.w = wzgv*np.fh0/np.h0; % save as structure in physical units
+zgvN.k = kzgvN/np.h0; zgvN.w = wzgvN*np.fh0/np.h0; % save as structure in physical units
 
 % print initial guesses and computed values 
 disp('initial frequencies:'), disp(w0)
-disp('converged frequencies:'), disp(zgv.w.')
+disp('converged frequencies:'), disp(zgvN.w.')
 
 % % plot
 figure(fig);
-hNewton = plot(zgv.k(:)*h, zgv.w(:)*h/2/pi/1e3, 'rx');
+hNewton = plot(zgvN.k(:)*h, zgvN.w(:)*h/2/pi/1e3, 'rx');
 hNewton.DisplayName = 'Newton method';
 hle = legend(hNewton); hle.Location='southeast'; drawnow;
 
@@ -69,15 +69,15 @@ L1s = sparse(L1);
 L2s = sparse(L2);
 Ms = sparse(M);
 
-tic; [kzgv, wzgv] = ZGV_MFRDScan(L2s, L1s, L0s, Ms, opts); toc % compute
-zgv.k = kzgv/np.h0; zgv.w = wzgv*np.fh0/np.h0; % save as structure in physical units
+tic; [kzgvS, wzgvS] = ZGV_MFRDScan(L2s, L1s, L0s, Ms, opts); toc % compute
+zgvS.k = kzgvS/np.h0; zgvS.w = wzgvS*np.fh0/np.h0; % save as structure in physical units
 
 disp('number of computed ZGV points:') % print number of located ZGV points 
-disp(length(zgv.w(zgv.w < 2*pi*fmax))) 
+disp(length(zgvS.w(zgvS.w < 2*pi*fmax))) 
 
 % % plot
 figure(fig);
-hScan = plot(zgv.k(:)*h, zgv.w(:)*h/2/pi/1e3, 'ko');
+hScan = plot(zgvS.k(:)*h, zgvS.w(:)*h/2/pi/1e3, 'ko');
 hScan.DisplayName = 'Scanning method';
 drawnow;
 
@@ -90,15 +90,15 @@ if ~exist('threepar_delta', 'file') % check if function is on Matlab path
     error('To use the direct method, install MultiParEig from https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig');
 end
 
-tic, [kzgv, wzgv] = ZGVDirect(L2, L1, L0, M); toc % compute
-zgv.k = kzgv/np.h0; zgv.w = wzgv*np.fh0/np.h0; % save as structure in physical units
+tic, [kzgvD, wzgvD] = ZGVDirect(L2, L1, L0, M); toc % compute
+zgvD.k = kzgvD/np.h0; zgvD.w = wzgvD*np.fh0/np.h0; % save as structure in physical units
 
 disp('number of computed ZGV points:') % print number of located ZGV points 
-disp(length(zgv.w(zgv.w < 2*pi*fmax))) 
+disp(length(zgvD.w(zgvD.w < 2*pi*fmax))) 
 
 
 % % plot
 figure(fig);
-hDirect = plot(zgv.k(:)*h, zgv.w(:)*h/2/pi/1e3, 'k.');
+hDirect = plot(zgvD.k(:)*h, zgvD.w(:)*h/2/pi/1e3, 'k.');
 hDirect.DisplayName = 'Direct method';
 drawnow;
