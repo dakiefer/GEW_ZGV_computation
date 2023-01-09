@@ -15,16 +15,18 @@
 % h            : plate thickness
 % np           : normalization of matrices 
 load("matrices.mat") 
-fmax = 25e6;         % maximum frequency of interest
+wmax = 2*pi*25e6;         % maximum frequency of interest
 
-% % here are some ZGV points with 2 digits accuracy (serve as initial guess for Newton's method): 
-w0 = [0.29    0.52    0.69    0.72    0.75]*1e8; % circular frequencies
-k0 = [0.34    0.35    0.71    0.25    0.07]*1e4; % wavenumbers
+% % here are some approx. ZGV points (serve as initial guess for Newton's method): 
+w0 = [0.25    0.5    0.7    0.7    0.8]*1e8; % circular frequencies
+k0 = [0.3    0.35    0.7    0.2    0.1]*1e4; % wavenumbers
 
 % % plot dispersion curves for reference: 
-fig = figure; clf, hold on, ylim([0, fmax/1e6]), xlim([0, fmax/1e6])
-plot(dat.k*h, dat.w*h/2/pi/1e3);
-xlabel('wavenumber-thickness kh in rad'), ylabel('frequency-thickness fh in MHz mm')
+fig = figure; clf, hold on, 
+plot(dat.k*h, dat.w*h/2/pi/1e3, 'Color', [.7, .7, .7], 'HandleVisibility', 'off');
+ylim([0, wmax/2/pi/1e6]), xlim([0, wmax/2/pi/1e6]), legend('Location','southeast')
+set(fig,'defaulttextinterpreter','latex'), set(fig, 'DefaultLegendInterpreter', 'latex')
+xlabel('wavenumber-thickness $kh$ in rad'), ylabel('frequency-thickness $fh$ in MHz$\cdot$mm')
 drawnow;
 
 %% Newton-type iteration: 
@@ -44,14 +46,13 @@ toc
 zgvN.k = kzgvN/np.h0; zgvN.w = wzgvN*np.fh0/np.h0; % save as structure in physical units
 
 % print initial guesses and computed values 
-disp('initial frequencies:'), disp(w0)
-disp('converged frequencies:'), disp(zgvN.w.')
+disp('initial frequencies:'), disp(w0/2/pi)
+disp('converged frequencies:'), disp(zgvN.w.'/2/pi)
 
 % % plot
 figure(fig);
-hNewton = plot(zgvN.k(:)*h, zgvN.w(:)*h/2/pi/1e3, 'rx');
-hNewton.DisplayName = 'Newton method';
-hle = legend(hNewton); hle.Location='southeast'; drawnow;
+plot(zgvN.k(:)*h, zgvN.w(:)*h/2/pi/1e3, 'rx', 'DisplayName', 'Newton method');
+drawnow;
 
 %% Scanning the ZGV points
 % This method does not need initial guesses and is likely to locate all ZGV
@@ -72,33 +73,27 @@ Ms = sparse(M);
 tic; [kzgvS, wzgvS] = ZGV_MFRDScan(L2s, L1s, L0s, Ms, opts); toc % compute
 zgvS.k = kzgvS/np.h0; zgvS.w = wzgvS*np.fh0/np.h0; % save as structure in physical units
 
-disp('number of computed ZGV points:') % print number of located ZGV points 
-disp(length(zgvS.w(zgvS.w < 2*pi*fmax))) 
+fprintf('Number of computed ZGV points: %d\n', length(zgvS.w(zgvS.w < wmax))) 
 
 % % plot
 figure(fig);
-hScan = plot(zgvS.k(:)*h, zgvS.w(:)*h/2/pi/1e3, 'ko');
-hScan.DisplayName = 'Scanning method';
+plot(zgvS.k(:)*h, zgvS.w(:)*h/2/pi/1e3, 'ksquare', 'DisplayName', 'Scanning method', 'MarkerSize', 8);
 drawnow;
 
 %% Direct method
 % This method does not need initial guesses and guarantees to find all ZGV
 % points as long as the matrices defining the problem are not too big. This is
 % rather slow and should not be used for matrices bigger than about 40x40.
+% NOTE: Requires MultiParEig from 
+% https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig
 fprintf('\n\n++ Direct method: ++\nThis will take a few minutes...\n')
-if ~exist('threepar_delta', 'file') % check if function is on Matlab path
-    error('To use the direct method, install MultiParEig from https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig');
-end
 
 tic, [kzgvD, wzgvD] = ZGVDirect(L2, L1, L0, M); toc % compute
 zgvD.k = kzgvD/np.h0; zgvD.w = wzgvD*np.fh0/np.h0; % save as structure in physical units
 
-disp('number of computed ZGV points:') % print number of located ZGV points 
-disp(length(zgvD.w(zgvD.w < 2*pi*fmax))) 
-
+fprintf('Number of computed ZGV points: %d\n', length(zgvD.w(zgvD.w < wmax)))
 
 % % plot
 figure(fig);
-hDirect = plot(zgvD.k(:)*h, zgvD.w(:)*h/2/pi/1e3, 'k.');
-hDirect.DisplayName = 'Direct method';
+plot(zgvD.k(:)*h, zgvD.w(:)*h/2/pi/1e3, 'k.', 'DisplayName', 'Direct method');
 drawnow;
