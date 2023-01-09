@@ -12,8 +12,8 @@ function [k, w] = ZGVDirect(L2,L1,L0,M,opts)
 % Options in opts: 
 %    - sc_steps: (2) number of staircase reduction steps.
 %    - membtol: (1e-6) tolerance for residuum of ZGV condition. 
-%    - showrank: (true) show rank of Delta matrices during reduction. 
-%    - show: (true) show output 
+%    - showrank: (false) show rank of Delta matrices during reduction. 
+%    - show: (false) show output 
 %    - rrqr: (true) See singgep().
 %    - method: ('project') method for solving the singular EVP.
 %
@@ -28,8 +28,7 @@ if nargin<5, opts=[]; end
 class_t = superiorfloat(L0,L1,L2,M);
 n = size(L0,2);
 if ~exist('threepar_delta', 'file') % check if function is on Matlab path
-    error('GEWTOOL:installMultiParEig',...
-        'This functionality requires you to first install MultiParEig from\nhttps://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig');
+    error('To use the direct method, install MultiParEig from https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig');
 end
 
 % define matrices of three-parameter EVP:
@@ -48,8 +47,8 @@ C0  = [0 0;0 1];
 % define algorithm options to be used in the following:
 if isfield(opts,'sc_steps'),  sc_steps = opts.sc_steps;  else, sc_steps=2;      end
 if isfield(opts,'membtol'),   membtol = opts.membtol;    else, membtol = 1e-4;  end
-if ~isfield(opts,'showrank'), opts.showrank = true;      end
-if ~isfield(opts,'show'),     opts.show = true;          end
+if ~isfield(opts,'showrank'), opts.showrank = false;      end
+if ~isfield(opts,'show'),     opts.show = false;          end
 if ~isfield(opts,'rrqr'),     opts.rrqr=true;               end
 if ~isfield(opts,'method'),   opts.method = 'project';   end
 
