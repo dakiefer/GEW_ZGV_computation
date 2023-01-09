@@ -1,11 +1,11 @@
 function [k,w,u,isConverged,err] = ZGVNewtonBeta(L2, L1, L0, M, k, w, u, opts)
 % ZGVNewtonBeta - Newton-type iteration to locate ZGV points. 
 % Computes a ZGV point given an initial guess (w0, k0) and optionally u0. 
-% A Newton-type method with complex correction is used for this end [1]. If the
-% iteration converges, the solutions (k, w, u) satisfies: 
+% A Newton-type method with complex correction is used to this end [1]. If the
+% iteration converges, the solutions (k, w, u) satisfy: 
 %   W*u   = [(1i*k)^2*L2 + 1i*k*L1 + L0 + w^2*M]*u = 0,     (waveguide problem)
-%   u'*iWd*u = u'*[-2*k*L2 + 1i*L1]*u = 0                      (group velocity is zero)
-%   u'*u - 1 = 0                                    (unit eigenvector u)
+%   u'*iWd*u = u'*[-2*k*L2 + 1i*L1]*u = 0                   (group velocity is zero)
+%   u'*u - 1 = 0                                            (unit eigenvector u)
 % The method assumes that (1i*k)^2*L2 + 1i*k*L1 + L0 + w^2*M is Hermitian. This is 
 % the case for a Galerkin discretization (e.g. FE) of a lossless waveguide.
 % 
@@ -16,14 +16,14 @@ function [k,w,u,isConverged,err] = ZGVNewtonBeta(L2, L1, L0, M, k, w, u, opts)
 %
 % Input: 
 %    - L2, L1, L0, M: square matrices such that L2, 1i*L1 and L1 are Hermitian
-%    - k, w: initial approximation for the ZGV point
-%    - u (optional): initial approximation for the right eigenvector, if
+%    - k, w: initial approximation of the ZGV point
+%    - u (optional): initial approximation of the right eigenvector; if
 %      not provided or empty then the singular vectors corresponding to the 
 %      smallest singular value of [(1i*k)^2*L2 + 1i*k*L1 + L0 + w^2*M] are used
 %    - options in structure opts:
 %         - maxsteps:   (10) maximum number of steps 
 %         - tol:        (1e-14) tolerance (relative to the norm of matrices)
-%         - beta_corr:  (true) turn on/off complex correction
+%         - beta_corr:  (true) turn complex correction on/off
 %         - show:       (false) set to 'true' to display values and residuals
 %
 % Literature:
@@ -72,7 +72,7 @@ while step < maxsteps
         isConverged = true;
         break
     end
-    % % Solution is not yet converged. Perform an update for p = [u, k, w^2]:
+    % % solution is not yet converged. Perform an update for p = [u, k, w^2]:
     step = step + 1;
     J = [ W            iWd*u         M*u;
           2*u'*iWd   -2*u'*L2*u       0;
@@ -92,14 +92,14 @@ while step < maxsteps
         Delta_p = -J\Fp;
     end
     u = u + Delta_p(1:n);
-    k = k + real(Delta_p(n+1));   % imaginary part is only due to numerical precission
-    mu = mu + real(Delta_p(n+2)); % imaginary part is only due to numerical precission
+    k = k + real(Delta_p(n+1));   % imaginary part is only due to numerical precision
+    mu = mu + real(Delta_p(n+2)); % imaginary part is only due to numerical precision
     u = u/norm(u);
 end
 
 % return values:
 w = real(sqrt(mu)); % angular frequency
-if ~isConverged % return nan if not converge, i.e., residuum is larger then tol
+if ~isConverged % return nan if not converged, i.e., residuum is larger then tol
     k = nan;
     w = nan;
     u = nan(size(u));

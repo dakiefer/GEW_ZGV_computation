@@ -4,23 +4,23 @@ function [kzgv, wzgv] = ZGV_MFRDScan(L2, L1, L0, M, opts)
 % Returns ZGV points (k, w) with the smallest k for 
 % [ (i*k)^2*L2 + i*k*L1 + L0 + mu*M ]*u = 0, where mu = w^2.
 % The Method of Fixed Relative Distance (MFRD) proposed by Jarlebring, Kvall and
-% Michiels [1] is used for this end. The method computes candidate wavenumbers close 
+% Michiels [1] is used to this end. The method computes candidate wavenumbers close 
 % to a shift k0 and refines them with a Newton-type iteration. By iteratively adapting
 % the shift k0, a wavenumber range [kmin, kmax] is searched. Details can be found in [2].
 %
-% It is important that matrix M is nonsingular amd that system is
+% It is important that matrix M is nonsingular amd that the system is
 % transformed in such way that k and mu are real.
 % Input:
 %    - L2,L1,L0,M: matrices of the model (for larger than 50 x 50, use sparse matrices)
 %    - options in opts:
-%         - Neigs: (8) how many eigenvalues we compute using eigs for one shift
-%         - MaxPoints: (20) maximum number ofZGV points we want
+%         - Neigs: (8) number of eigenvalues to compute using eigs for one shift
+%         - MaxPoints: (20) maximum number of requested ZGV points 
 %         - MaxIter: (10) maximum number of iterations with different shift
 %         - ShiftFactor: (1.1), factor for shift increment for next iteration
 %         - DeltaPert: (1e-6), factor for perturbation is 1+DeltaPert
 %         - kStart: (1): initial shift for normalized wavenumber k
-%         - kMax: maximum normalized wavenumber to scan within 
-%         - show: (false) display information during calculation 
+%         - kMax: maximum normalized wavenumber to scan 
+%         - show: (false) whether to display information during calculation 
 %         - wmax: (inf, inactive) maximum angular frequency that defines kMax
 %                 via the wave speed. This option is an extension for computeZGVScan().
 %
@@ -42,9 +42,9 @@ if isfield(opts,'MaxPoints'),    MaxPoints = opts.MaxPoints;      else, MaxPoint
 if isfield(opts,'MaxIter'),      MaxIter = opts.MaxIter;          else, MaxIter = 30;       end
 if isfield(opts,'ShiftFactor'),  ShiftFactor = opts.ShiftFactor;  else, ShiftFactor = 1.1;  end % relative increment for k0
 if isfield(opts,'DeltaPert'),    DeltaPert = opts.DeltaPert;      else, DeltaPert = 1e-6;   end % regularization parameter 
-if isfield(opts,'kStart'),       kStart = opts.kStart;            else, kStart = 1;    end % initial shift kStart, search will be done for k > kStart 
-if isfield(opts,'kMax'),         kMax = opts.kMax;                else, kMax = inf;    end
-if ~isfield(opts,'show'),        opts.show = false;    end % display iteration results
+if isfield(opts,'kStart'),       kStart = opts.kStart;            else, kStart = 1;         end % initial shift kStart, search will be done for k > kStart 
+if isfield(opts,'kMax'),         kMax = opts.kMax;                else, kMax = inf;         end
+if ~isfield(opts,'show'),        opts.show = false;                                         end % display iteration results
 
 if opts.show, disp(opts), end
 
