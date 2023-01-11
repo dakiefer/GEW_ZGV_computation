@@ -31,6 +31,9 @@ function [k,w,u,isConverged,err] = ZGVNewtonBeta(L2, L1, L0, M, k, w, u, opts)
 % zero-group-velocity points in anisotropic elastic waveguides: globally and locally 
 % convergent methods.” arXiv, Nov. 03, 2022. doi: 10.48550/arXiv.2211.01995.
 %
+% [2] T. Lu, Y. Su, "A Newton-type method for two-dimensional eigenvalue problems."
+% Numerical Linear Algebra with Applications 29 (20022) e2430; doi: 10.1002/nla.2430.
+%
 % 2022 Bor Plestenjak, Daniel A. Kiefer
 
 % % check arguments:

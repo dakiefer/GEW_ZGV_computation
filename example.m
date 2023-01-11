@@ -57,7 +57,7 @@ drawnow;
 %% Scanning the ZGV points
 % This method does not need initial guesses and is likely to locate all ZGV
 % points, but it is substantially slower than the Newton-type iteration. To speed
-% up the computation, provide the paramter kMax (and optionally kStart), these
+% up the computation, provide the parameter kMax (and optionally kStart), these
 % define the wavenumber search interval [kStart, kMax].
 fprintf('\n\n++ Scanning method: ++\n')
 

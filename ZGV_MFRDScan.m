@@ -8,7 +8,7 @@ function [kzgv, wzgv] = ZGV_MFRDScan(L2, L1, L0, M, opts)
 % to a shift k0 and refines them with a Newton-type iteration. By iteratively adapting
 % the shift k0, a wavenumber range [kmin, kmax] is searched. Details can be found in [2].
 %
-% It is important that matrix M is nonsingular amd that the system is
+% It is important that matrix M is nonsingular and that the system is
 % transformed in such way that k and mu are real.
 % Input:
 %    - L2,L1,L0,M: matrices of the model (for larger than 50 x 50, use sparse matrices)
