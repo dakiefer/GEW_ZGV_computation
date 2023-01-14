@@ -1,8 +1,9 @@
 %% Compute ZGV points of guided elastic waves in an anisotropic plate
 % Showcases three different computational techniques to locate ZGV points. 
 % The matrices that describe the guided waves in the 1 mm thick plate are loaded
-% from "matrices.mat" and are large enough (39x39) to account for frequencies up
-% to 25 MHz.
+% from "matrices_small.mat" and are large enough (25x25) to account for frequencies up
+% to 18 MHz. The second example, "matrices_big.mat" represents the same plate with a 
+% finer discretization (39x39) and can represent frequencies up to 25 MHz.
 %
 % The methods have been presented in:
 % D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing 
@@ -10,12 +11,12 @@
 % convergent methods." arXiv, Nov. 2022. doi: 10.48550/arXiv.2211.01995.
 
 % % load matrices and parameters
-% L2, L1, L0, M: finite element matrices
-% dat          : dispersion data for visualization
-% h            : plate thickness
-% np           : normalization of matrices 
-load("matrices.mat") 
-wmax = 2*pi*25e6;         % maximum frequency of interest
+% L2, L1, L0, M : spectral element matrices
+% dat           : dispersion data for visualization
+% h             : plate thickness
+% np            : normalization of matrices 
+load("matrices_small.mat") 
+wmax = 2*pi*18e6;         % maximum frequency of interest
 
 % % here are some approx. ZGV points (serve as initial guess for Newton's method): 
 w0 = [0.25    0.5    0.7    0.7    0.8]*1e8; % circular frequencies
@@ -86,7 +87,7 @@ drawnow;
 % rather slow and should not be used for matrices bigger than about 40x40.
 % NOTE: Requires MultiParEig from 
 % https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig
-fprintf('\n\n++ Direct method: ++\nThis will take a few minutes...\n')
+fprintf('\n\n++ Direct method: ++\nThis will take several seconds...\n')
 
 tic, [kzgvD, wzgvD] = ZGVDirect(L2, L1, L0, M); toc % compute
 zgvD.k = kzgvD/np.h0; zgvD.w = wzgvD*np.fh0/np.h0; % save as structure in physical units
