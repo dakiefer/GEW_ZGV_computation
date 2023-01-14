@@ -1,4 +1,4 @@
-# GEW ZGV computation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.TODO.svg)](https://doi.org/10.5281/zenodo.TODO)
+# GEW ZGV computation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7537442.svg)](https://doi.org/10.5281/zenodo.7537442)
 
 **Compute zero-group-velocity (ZGV) points of guided elastic waves (GEWs).** 
 
@@ -38,7 +38,7 @@ Daniel A. Kiefer, Institut Langevin, ESPCI Paris | PSL, France<br/>
 
 If this code is useful to you, please cite it as:
 
-> B. Plestenjak and D. A. Kiefer, GEW ZGV computation [Computer software], 2023. doi: [10.5281/zenodo.TODO](http://doi.org/10.5281/zenodo.TODO)
+> B. Plestenjak and D. A. Kiefer, GEW ZGV computation [Computer software], 2023. doi: [10.5281/zenodo.7537442](http://doi.org/10.5281/zenodo.7537442)
 
 and also the related publication:
 
