@@ -6,9 +6,11 @@
 % finer discretization (39x39) and can represent frequencies up to 25 MHz.
 %
 % The methods have been presented in:
-% D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing 
-% zero-group-velocity points in anisotropic elastic waveguides: globally and locally 
-% convergent methods." arXiv, Nov. 2022. doi: 10.48550/arXiv.2211.01995.
+% D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing
+% zero-group-velocity points in anisotropic elastic waveguides: Globally and
+% locally convergent methods," The Journal of the Acoustical Society of America,
+% vol. 153, no. 2, pp. 1386–1398, Feb. 2023, doi: 10.1121/10.0017252.
+
 
 % % load matrices and parameters
 % L2, L1, L0, M : spectral element matrices

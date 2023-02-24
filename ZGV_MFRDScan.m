@@ -28,9 +28,10 @@ function [kzgv, wzgv] = ZGV_MFRDScan(L2, L1, L0, M, opts)
 % λ is a Double Eigenvalue of A+μB," SIAM J. Matrix Anal. Appl., vol. 32, no. 3, 
 % pp. 902–927, Jul. 2011, doi: 10.1137/100783157.
 %
-% [2] D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing 
-% zero-group-velocity points in anisotropic elastic waveguides: globally and locally 
-% convergent methods." arXiv, Nov. 03, 2022. doi: 10.48550/arXiv.2211.01995.
+% [2] D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing
+% zero-group-velocity points in anisotropic elastic waveguides: Globally and
+% locally convergent methods," The Journal of the Acoustical Society of America,
+% vol. 153, no. 2, pp. 1386–1398, Feb. 2023, doi: 10.1121/10.0017252.
 %
 % 2022 - Bor Plestenjak, adapted by Daniel A. Kiefer
 

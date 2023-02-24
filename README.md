@@ -1,4 +1,4 @@
-# GEW ZGV computation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7537442.svg)](https://doi.org/10.5281/zenodo.7537442)
+# GEW ZGV computation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7537441.svg)](https://doi.org/10.5281/zenodo.7537441)
 
 **Compute zero-group-velocity (ZGV) points of guided elastic waves (GEWs).** 
 
@@ -14,7 +14,7 @@ Code repository: [<img src="https://www.svgrepo.com/show/35001/github.svg" alt="
 
 The methods have been presented in:
 
-> D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing zero-group-velocity points in anisotropic elastic waveguides: globally and locally convergent methods." arXiv, Nov. 2022. doi: [10.48550/arXiv.2211.01995](http://doi.org/10.48550/arXiv.2211.01995)
+> D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, “Computing zero-group-velocity points in anisotropic elastic waveguides: Globally and locally convergent methods,” The Journal of the Acoustical Society of America, vol. 153, no. 2, pp. 1386–1398, Feb. 2023, doi: [10.1121/10.0017252](http://doi.org/10.1121/10.0017252)
 
 ## How to use
 
@@ -24,7 +24,7 @@ The methods have been presented in:
 ## Dependencies
 
 The *direct method* is based on the solver for singular two-parameter eigenvalue problems implemented by Bor Plestenjak and Andrej Muhič in `MultiParEig`: 
-> Bor Plestenjak (2023). MultiParEig (https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig), MATLAB Central File Exchange. Retrieved January 2, 2023.
+> Bor Plestenjak (2023). MultiParEig (https://www.mathworks.com/matlabcentral/fileexchange/47844-multipareig), MATLAB Central File Exchange. Retrieved January 14, 2023.
 
 ## Authors
 
@@ -38,10 +38,10 @@ Daniel A. Kiefer, Institut Langevin, ESPCI Paris | PSL, France<br/>
 
 If this code is useful to you, please cite it as:
 
-> B. Plestenjak and D. A. Kiefer, GEW ZGV computation [Computer software], 2023. doi: [10.5281/zenodo.7537442](http://doi.org/10.5281/zenodo.7537442)
+> B. Plestenjak and D. A. Kiefer, GEW ZGV computation [Computer software], 2023. doi: [10.5281/zenodo.7537441](http://doi.org/10.5281/zenodo.7537441)
 
 and also the related publication:
 
-> D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, "Computing zero-group-velocity points in anisotropic elastic waveguides: globally and locally convergent methods." arXiv, Nov. 2022. doi: [10.48550/arXiv.2211.01995](http://doi.org/10.48550/arXiv.2211.01995)
+> D. A. Kiefer, B. Plestenjak, H. Gravenkamp, and C. Prada, “Computing zero-group-velocity points in anisotropic elastic waveguides: Globally and locally convergent methods,” The Journal of the Acoustical Society of America, vol. 153, no. 2, pp. 1386–1398, Feb. 2023, doi: [10.1121/10.0017252](http://doi.org/10.1121/10.0017252)
 
-[<img src="https://user-images.githubusercontent.com/3725269/210226492-a2a56855-f1ea-4e36-96bf-0c66e28e6d7b.svg" alt="Logo FMF" width="210px" />](https://www.fmf.uni-lj.si/en/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<img src="https://user-images.githubusercontent.com/3725269/210226450-69833a58-8e9e-4dca-8401-2ab5119cc1da.svg" alt="Logo Institut Langevin" width="230px" />](https://www.institut-langevin.espci.fr) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<img src="https://user-images.githubusercontent.com/3725269/210226449-caa43ed7-0385-4546-a9ad-5d3c99339b8c.svg" alt="Logo ESPCI Paris" width="210px" />](https://www.espci.psl.eu/en/)
+[<img src="https://user-images.githubusercontent.com/3725269/210226492-a2a56855-f1ea-4e36-96bf-0c66e28e6d7b.svg" alt="Logo FMF" width="190px" />](https://www.fmf.uni-lj.si/en/) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<img src="https://user-images.githubusercontent.com/3725269/210226450-69833a58-8e9e-4dca-8401-2ab5119cc1da.svg" alt="Logo Institut Langevin" width="210px" />](https://www.institut-langevin.espci.fr) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<img src="https://user-images.githubusercontent.com/3725269/210226449-caa43ed7-0385-4546-a9ad-5d3c99339b8c.svg" alt="Logo ESPCI Paris" width="190px" />](https://www.espci.psl.eu/en/)
